@@ -99,6 +99,15 @@ async function run() {
             res.send(result);
         });
 
+        // get my products api
+
+        app.get("/my-products/:email", async (req, res) => {
+            const email = req.params.email;
+            const filter = { email };
+            const result = await productsCollection.find(filter).toArray();
+            res.send(result);
+        });
+
     } finally { }
 }
 run().catch(console.dir);
