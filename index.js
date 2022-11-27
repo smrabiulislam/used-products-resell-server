@@ -40,11 +40,12 @@ async function run() {
             .db("resellerHub")
             .collection("bookings");
 
-        app.get("/categories", async (req, res) => {
-            const query = {};
-            const result = await categoriesCollection.find(query).toArray();
-            res.send(result);
-        });
+        app.get('/categories', async (req, res) => {
+            const query = {}
+            const cursor = categoriesCollection.find(query);
+            const categories = await cursor.toArray();
+            res.send(categories);
+        })
 
         // get all products
 
