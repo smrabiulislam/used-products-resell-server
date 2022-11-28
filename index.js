@@ -76,6 +76,16 @@ async function run() {
             res.send(result);
         });
 
+        //  delete users
+
+        app.delete("/users/:id", async (req, res) => {
+            const id = req.params.id;
+            //console.log(id);
+            const filter = { _id: ObjectId(id) };
+            const result = await usersCollection.deleteOne(filter);
+            res.send(result);
+        });
+
         // single product
 
         app.get("/product/:id", async (req, res) => {
